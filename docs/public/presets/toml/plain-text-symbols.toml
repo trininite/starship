@@ -305,7 +305,9 @@ sigint_symbol = "sigint"
 signal_symbol = "sig"
 
 [sudo]
-symbol = "sudo "
+format = "$symbol "
+cached_symbol = "sudo"
+uncached_symbol = "no-sudo"
 
 [swift]
 symbol = "swift "

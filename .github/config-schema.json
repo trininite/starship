@@ -1641,9 +1641,9 @@
     "sudo": {
       "$ref": "#/$defs/SudoConfig",
       "default": {
-        "format": "[as $symbol]($style)",
-        "symbol": "🧙 ",
-        "style": "bold blue",
+        "format": "[as $symbol](bold blue)",
+        "cached_symbol": "🧙 ",
+        "uncached_symbol": "👤 ",
         "allow_windows": false,
         "disabled": true
       }
@@ -6202,15 +6202,15 @@
       "properties": {
         "format": {
           "type": "string",
-          "default": "[as $symbol]($style)"
+          "default": "[as $symbol](bold blue)"
         },
-        "symbol": {
+        "cached_symbol": {
           "type": "string",
           "default": "🧙 "
         },
-        "style": {
+        "uncached_symbol": {
           "type": "string",
-          "default": "bold blue"
+          "default": "👤 "
         },
         "allow_windows": {
           "type": "boolean",

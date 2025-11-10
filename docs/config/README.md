@@ -4579,7 +4579,7 @@ disabled = false
 ## Sudo
 
 The `sudo` module displays if sudo credentials are currently cached.
-The module will only be shown if credentials are cached.
+The cache state is indicated with either the cached_symbol or uncached_symbol segments.
 
 > [!TIP]
 > This module is disabled by default.
@@ -4587,31 +4587,28 @@ The module will only be shown if credentials are cached.
 
 ### Options
 
-| Option          | Default                  | Description                                             |
-| --------------- | ------------------------ | ------------------------------------------------------- |
-| `format`        | `'[as $symbol]($style)'` | The format of the module                                |
-| `symbol`        | `'🧙 '`                  | The symbol displayed when credentials are cached        |
-| `style`         | `'bold blue'`            | The style for the module.                               |
-| `allow_windows` | `false`                  | Since windows has no default sudo, default is disabled. |
-| `disabled`      | `true`                   | Disables the `sudo` module.                             |
+| Option            | Default                     | Description                                              |
+| ----------------- | --------------------------- | -------------------------------------------------------- |
+| `format`          | `'[as $symbol](bold blue)'` | The format of the module                                 |
+| `cached_symbol`   | `'🧙 '`                     | The symbol displayed when credentials are cached         |
+| `uncached_symbol` | `'👤 '`                     | The symbol displayed when credentials are **not** cached |
+| `allow_windows`   | `false`                     | Since windows has no default sudo, default is disabled.  |
+| `disabled`        | `true`                      | Disables the `sudo` module.                              |
 
 ### Variables
 
-| Variable | Example | Description                          |
-| -------- | ------- | ------------------------------------ |
-| symbol   |         | Mirrors the value of option `symbol` |
-| style\*  |         | Mirrors the value of option `style`  |
-
-*: This variable can only be used as a part of a style string
+| Variable | Example | Description                                                                               |
+| -------- | ------- | ----------------------------------------------------------------------------------------- |
+| symbol   |         | Mirrors the value of option `cached_symbol`/`uncached` depending on sudo cred cache state |
 
 ### Example
 
 ```toml
 # ~/.config/starship.toml
-
 [sudo]
-style = 'bold green'
-symbol = '👩‍💻 '
+format = "$symbol "
+cached_symbol = '🔓'
+uncached_symbol = ''
 disabled = false
 ```
 
@@ -4621,6 +4618,9 @@ disabled = false
 
 [sudo]
 allow_windows = true
+format = "$symbol "
+cached_symbol = "[](bold green)"
+uncached_symbol = "[](bold red)"
 disabled = false
 ```
 

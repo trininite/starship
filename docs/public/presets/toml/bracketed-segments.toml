@@ -247,7 +247,7 @@ format = '\[[$symbol$environment]($style)\]'
 format = '\[[$symbol$status]($style)\]'
 
 [sudo]
-format = '\[[as $symbol]($style)\]'
+format = '\[[as $symbol](blue bold)\]'
 
 [swift]
 format = '\[[$symbol($version)]($style)\]'

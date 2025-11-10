@@ -347,7 +347,7 @@ pub fn description(module: &str) -> &'static str {
         "solidity" => "The current installed version of Solidity",
         "spack" => "The current spack environment, if $SPACK_ENV is set",
         "status" => "The status of the last command",
-        "sudo" => "The sudo credentials are currently cached",
+        "sudo" => "The existence of cached sudo credentials",
         "swift" => "The currently installed version of Swift",
         "terraform" => "The currently selected terraform workspace and version",
         "time" => "The current local time",

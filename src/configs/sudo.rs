@@ -9,8 +9,8 @@ use serde::{Deserialize, Serialize};
 #[serde(default)]
 pub struct SudoConfig<'a> {
     pub format: &'a str,
-    pub symbol: &'a str,
-    pub style: &'a str,
+    pub cached_symbol: &'a str,
+    pub uncached_symbol: &'a str,
     pub allow_windows: bool,
     pub disabled: bool,
 }
@@ -18,9 +18,9 @@ pub struct SudoConfig<'a> {
 impl Default for SudoConfig<'_> {
     fn default() -> Self {
         Self {
-            format: "[as $symbol]($style)",
-            symbol: "🧙 ",
-            style: "bold blue",
+            format: "[as $symbol](bold blue)",
+            cached_symbol: "🧙 ",
+            uncached_symbol: "👤 ",
             allow_windows: false,
             disabled: true,
         }

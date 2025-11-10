@@ -20,18 +20,16 @@ pub fn module<'a>(context: &'a Context) -> Option<Module<'a>> {
 
     let is_sudo_cached = context.exec_cmd("sudo", &["-n", "true"]).is_some();
 
-    if !is_sudo_cached {
-        return None;
-    }
+    let symbol = if is_sudo_cached {
+        Some(config.cached_symbol)
+    } else {
+        Some(config.uncached_symbol)
+    };
 
     let parsed = StringFormatter::new(config.format).and_then(|formatter| {
         formatter
             .map_meta(|variable, _| match variable {
-                "symbol" => Some(config.symbol),
-                _ => None,
-            })
-            .map_style(|variable| match variable {
-                "style" => Some(Ok(config.style)),
+                "symbol" => symbol,
                 _ => None,
             })
             .parse(None, Some(context))
@@ -63,7 +61,7 @@ mod tests {
                 allow_windows = true
             })
             .collect();
-        let expected = None;
+        let expected = Some(format!("{}", Color::Blue.bold().paint("as 👤 ")));
 
         assert_eq!(expected, actual);
     }
